@@ -216,7 +216,8 @@ export async function restoreCache() {
 		core.debug(`- ${cachePath}`);
 	}
 
-	const cacheKey = await cache.restoreCache(getCachePaths(), primaryKey, getCachePrefixes());
+	const restoreKeys = core.getInput('cache-restore-keys') ? getCachePrefixes() : []
+	const cacheKey = await cache.restoreCache(getCachePaths(), primaryKey, restoreKeys);
 
 	if (cacheKey) {
 		core.saveState('cache-hit-key', cacheKey);

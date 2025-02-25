@@ -74367,8 +74367,10 @@ async function restoreCache() {
     for (const cachePath of cachePaths) {
         core.debug(`- ${cachePath}`);
     }
-    const restoreKeys = core.getInput('cache-restore-keys') ? (0, cache_1.getCachePrefixes)() : [];
+    core.debug(`Restore keys bool: ${core.getBooleanInput('cache-restore-keys')}`);
+    const restoreKeys = core.getBooleanInput('cache-restore-keys') ? (0, cache_1.getCachePrefixes)() : [];
     const cacheKey = await cache.restoreCache((0, cache_1.getCachePaths)(), primaryKey, restoreKeys);
+    core.debug(`Restore keys: ${restoreKeys}`);
     if (cacheKey) {
         core.saveState('cache-hit-key', cacheKey);
         core.info(`Cache restored using key ${primaryKey}`);

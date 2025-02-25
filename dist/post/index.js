@@ -74112,7 +74112,7 @@ function getCachePaths() {
     ];
 }
 function getCachePrefixes() {
-    return [`setup-rustcargo-v1-${process.platform}`, 'setup-rustcargo-v1'];
+    return [`setup-rustcargo-v2-${process.platform}`, 'setup-rustcargo-v2'];
 }
 async function getPrimaryCacheKey() {
     const hasher = node_crypto_1.default.createHash('sha1');
@@ -74367,7 +74367,7 @@ async function restoreCache() {
     for (const cachePath of cachePaths) {
         core.debug(`- ${cachePath}`);
     }
-    const restoreKeys = core.getInput('cache-restore-keys') ? (0, cache_1.getCachePrefixes)() : [];
+    const restoreKeys = core.getBooleanInput('cache-restore-keys') ? (0, cache_1.getCachePrefixes)() : [];
     const cacheKey = await cache.restoreCache((0, cache_1.getCachePaths)(), primaryKey, restoreKeys);
     if (cacheKey) {
         core.saveState('cache-hit-key', cacheKey);

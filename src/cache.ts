@@ -38,7 +38,7 @@ export function getCachePaths(): string[] {
 }
 
 export function getCachePrefixes(): string[] {
-	return [`setup-rustcargo-v1-${process.platform}`, 'setup-rustcargo-v1'];
+	return [`setup-rustcargo-v2-${process.platform}`, 'setup-rustcargo-v2'];
 }
 
 export async function getPrimaryCacheKey() {

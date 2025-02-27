@@ -216,7 +216,7 @@ export async function restoreCache() {
 		core.debug(`- ${cachePath}`);
 	}
 
-	const restoreKeys = core.getBooleanInput('cache-restore-keys') ? getCachePrefixes() : []
+	const restoreKeys = core.getBooleanInput('cache-restore-keys') ? getCachePrefixes() : ["sentinel"]
 	const cacheKey = await cache.restoreCache(getCachePaths(), primaryKey, restoreKeys);
 
 	if (cacheKey) {
